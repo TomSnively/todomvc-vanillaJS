@@ -1,4 +1,15 @@
-function renderToDoList(data) {
+function writeStorage(data){
+    if (typeof(Storage) !== "undefined") {
+        localStorage.setItem("todomvc-vanillaJS", JSON.stringify(data));
+    } else {
+        console.log('no storage available');
+    }
+}
+
+
+function renderToDoList() {
+    let data = JSON.parse(localStorage.getItem("todomvc-vanillaJS"));
+
     let element = document.getElementById("todolist");
     let todoHTML = "";
 
@@ -39,8 +50,14 @@ let sampleData =
             "complete":"false"
         }
     ];
+writeStorage(sampleData);
 
-renderToDoList(sampleData);
+//let dataRead = JSON.parse(localStorage.getItem("todomvc-vanillaJS"));
+//console.log(dataRead);
+//console.log(dataRead == sampleData);
+
+
+renderToDoList();
 
 document.getElementById('header').onkeypress = function(e) {
     var event = e || window.event;
