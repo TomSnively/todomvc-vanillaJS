@@ -15,7 +15,7 @@ function renderToDoList() {
 
     // create the header
     todoHTML += '<div id="header">';
-    todoHTML += '<input type="text" placeholder="Enter a task" />';
+    todoHTML += '<input type="text" id="newToDo" placeholder="Enter a task" />';
     todoHTML += '</div>';
 
     // create the rest of the rows
@@ -34,7 +34,10 @@ function editEntry(index){
 
 }
 
+let sampleData = [];
+writeStorage(sampleData);
 
+/*
 let sampleData =
     [
         {
@@ -51,6 +54,7 @@ let sampleData =
         }
     ];
 writeStorage(sampleData);
+*/
 
 //let dataRead = JSON.parse(localStorage.getItem("todomvc-vanillaJS"));
 //console.log(dataRead);
@@ -66,9 +70,22 @@ document.getElementById('header').onkeypress = function(e) {
     if ( charCode == '13' ) {
         // Enter pressed
         console.log('user pressed Enter');
+        let newToDo = document.getElementById('newToDo').value;
+        console.log(newToDo);
+        if (newToDo != "") {
+            let data = [];
+            data = JSON.parse(localStorage.getItem("todomvc-vanillaJS"));
+            // add new to do to the end of the list
+            let newToDoObject =
+                {
+                    "todo": newToDo,
+                    "complete":"false"
+                };
+            data[data.length] = newToDoObject;
+            writeStorage(data);
+        }
 
-
-        renderToDoList(sampleData);
+        renderToDoList();
         return false;
     }
 };
