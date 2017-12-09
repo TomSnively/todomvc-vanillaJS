@@ -1,0 +1,22 @@
+h1 {
+    font-size: 80px;
+    text-align: center;
+}
+
+footer {
+    font-size: 16px;
+    text-align: center;
+}
+
+#todolist {
+    max-width: 600px;
+    margin-left: 200px;
+    font-size: 30px;
+
+}
+
+.header {
+    border-width: 1px;
+    border-color: black;
+
+}
